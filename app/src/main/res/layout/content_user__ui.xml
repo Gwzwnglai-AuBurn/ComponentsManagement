@@ -9,7 +9,7 @@
     tools:showIn="@layout/activity_user__ui">
 
 
-    <android.support.v4.widget.DrawerLayout
+    <androidx.drawerlayout.widget.DrawerLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
         android:id="@+id/drawerlayout"
@@ -73,14 +73,13 @@
 
 
 
-        <android.support.design.widget.NavigationView
+        <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav1"
         android:layout_width="240dp"
         android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="?attr/colorAccent"
             android:accessibilityLiveRegion="none">
-            //android:layout_gravity="start"
 
             <ImageView
             android:layout_width="wrap_content"
@@ -123,9 +122,9 @@
                 android:fontFamily="sans-serif"
                 android:textStyle="normal|bold" />
 
-        </android.support.design.widget.NavigationView>
+        </com.google.android.material.navigation.NavigationView>
 
 
-    </android.support.v4.widget.DrawerLayout>
+    </androidx.drawerlayout.widget.DrawerLayout>
 
 </RelativeLayout>

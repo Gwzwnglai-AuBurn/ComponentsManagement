@@ -246,7 +246,15 @@ private TextView txtpp;
                                     filepath.putFile(selectedImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                         @Override
                                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                            Uri uri2 = taskSnapshot.getDownloadUrl();
+//                                            Uri uri2 = taskSnapshot.getDownloadUrl();
+                                            final Task<Uri> firebaseUri = taskSnapshot.getStorage().getDownloadUrl();
+                                            firebaseUri.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                @Override
+                                                public void onSuccess(Uri uri) {
+
+                                                    String url = uri.toString();
+                                                    Log.e("TAG:", "the url is: " + url);
+
                                             FirebaseUser user = mAuth.getCurrentUser();
                                             mdatabase = FirebaseDatabase.getInstance().getReference().child("Member");
                                             DatabaseReference UserDB = mdatabase.child(user.getUid());
@@ -258,8 +266,10 @@ private TextView txtpp;
                                             UserDB.child("NIC NO").setValue(nic.getText().toString().trim());
                                             UserDB.child("Answer").setValue(answer1.getText().toString().trim());
                                             UserDB.child("Answer2").setValue(answer2.getText().toString().trim());
-                                            UserDB.child("Image").setValue(uri2.toString());
+                                            UserDB.child("Image").setValue(firebaseUri.toString());
 
+                                                }
+                                            });
 
                                         }
                                     });

@@ -38,6 +38,7 @@ import com.bumptech.glide.Glide;
 import com.firebase.client.Firebase;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -630,18 +631,28 @@ public void uploadnewimage()
     filepath.putFile(selectedImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
         @Override
         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-            Uri uri2 = taskSnapshot.getDownloadUrl();
-            mdatabase = FirebaseDatabase.getInstance().getReference().child("Member");
-            DatabaseReference UserDB = mdatabase.child(user.getUid());
+//            Uri uri2 = taskSnapshot.getStorage().getDownloadUrl();
 
-                UserDB.child("Image").setValue(uri2.toString());
+            final Task<Uri> firebaseUri = taskSnapshot.getStorage().getDownloadUrl();
+            firebaseUri.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
 
+                    String url = uri.toString();
+                    Log.e("TAG:", "the url is: " + url);
 
-            DP();
-        progress.dismiss();
+                    mdatabase = FirebaseDatabase.getInstance().getReference().child("Member");
+                    DatabaseReference UserDB = mdatabase.child(user.getUid());
+
+                    UserDB.child("Image").setValue(firebaseUri.toString());
+
+                    DP();
+                    progress.dismiss();
+                    Toast.makeText(User_UI.this, "picture changed successfully ", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     });
-    Toast.makeText(User_UI.this, "picture changed successfully ", Toast.LENGTH_SHORT).show();
 }
     protected void onResume() {
         super.onResume();
