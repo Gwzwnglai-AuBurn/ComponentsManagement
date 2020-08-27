@@ -125,6 +125,9 @@ private ImageView profile,profile2,profilpic;
                 update();
             }
         });
+
+
+
 //Notification
 
 
@@ -435,13 +438,15 @@ private ImageView profile,profile2,profilpic;
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
 
+                            try {
+
                             uname.setText(dataSnapshot.child("Name").getValue().toString());
                             uemail.setText(user.getEmail().toString());
                             ugender.setText(dataSnapshot.child("Gender").getValue().toString());
                             uaddress.setText(dataSnapshot.child("Address").getValue().toString());
                             udob.setText(dataSnapshot.child("DOB").getValue().toString());
                             unic.setText(dataSnapshot.child("NIC NO").getValue().toString());
-                            imageuri=dataSnapshot.child("Image").getValue().toString();
+                            imageuri = dataSnapshot.child("Image").getValue().toString();
 
                             uname2.setText(dataSnapshot.child("Name").getValue().toString());
                             uaddress2.setText(dataSnapshot.child("Address").getValue().toString());
@@ -458,7 +463,10 @@ private ImageView profile,profile2,profilpic;
                             uaddress.setEnabled(false);
                             udob.setEnabled(false);
                             unic.setEnabled(false);
-
+                        }
+                        catch (Exception e){
+                                Log.d("db_exception", "no db at the time of registration of user");
+                        }
                         }
 
                         @Override

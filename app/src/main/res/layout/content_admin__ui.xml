@@ -28,7 +28,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TabWidget
@@ -48,7 +48,7 @@
                     <include android:id="@+id/Atab1"
                         layout="@layout/admintab1"
                         android:layout_width="match_parent"
-                        android:layout_height="481dp"
+                        android:layout_height="match_parent"
                         android:visibility="visible">
                     </include>
                     <include android:id="@+id/Atab2"
