@@ -158,7 +158,7 @@ public class Admin_UI extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (sbib.getText().toString().equals("")) {
-                    sbib.setError("Enter Book ID");
+                    sbib.setError("Enter Component ID");
                 } else {
 
                     try {
@@ -179,20 +179,20 @@ public class Admin_UI extends AppCompatActivity {
                                 }
                                 else
                                 {
-                                    sbib.setError("This Book Not Borrowed");
+                                    sbib.setError("This Component Not Borrowed");
                                 }
                             }
 
                             @Override
                             public void onCancelled(DatabaseError databaseError) {
-                                Toast.makeText(getApplicationContext(), "Book was not borrowed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Component was not borrowed", Toast.LENGTH_SHORT).show();
 
                             }
                         });
 
 
                     } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), "Book Deleted Successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Component Deleted Successfully", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -204,7 +204,7 @@ public class Admin_UI extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (sbib.getText().toString().equals("")) {
-                    sbib.setError("Enter Book ID");
+                    sbib.setError("Enter Component ID");
 
                 } else {
 
@@ -216,22 +216,22 @@ public class Admin_UI extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
 
-                            Toast.makeText(getApplicationContext(), "Book Returned successfully", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Component Returned successfully", Toast.LENGTH_LONG).show();
                         }
                     });
 
 
                     mdatabase = FirebaseDatabase.getInstance().getReference();
-                    DatabaseReference child2 = mdatabase.child("BorrowedBooks").child(userid);
-                    DatabaseReference DB = child2.child("Book");
+                    DatabaseReference child2 = mdatabase.child("BorrowedComponents").child(userid);
+                    DatabaseReference DB = child2.child("Component");
                     DB.child(SBID).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Toast.makeText(getApplicationContext(), "Book Returned successfully", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Component Returned successfully", Toast.LENGTH_LONG).show();
                         }
                     });
 
-                    DatabaseReference child3 = mdatabase.child("Books");
+                    DatabaseReference child3 = mdatabase.child("Components");
                     DatabaseReference UserDB = child3.child(SBID);
 
 
@@ -315,7 +315,7 @@ public class Admin_UI extends AppCompatActivity {
 
 
                 mdatabase= FirebaseDatabase.getInstance().getReference();
-                DatabaseReference child=mdatabase.child("Book Location");
+                DatabaseReference child=mdatabase.child("Component Location");
                 DatabaseReference UserDB=child.child(locid);
 
                 UserDB.child("Locations").setValue(location.toString().trim());
@@ -448,7 +448,7 @@ public class Admin_UI extends AppCompatActivity {
     {
         final EditText txtlid=(EditText) findViewById(R.id.txtlocid);
         mdatabase = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference child=mdatabase.child("Book Location");
+        DatabaseReference child=mdatabase.child("Component Location");
         child.child("Location").getParent().orderByKey().limitToLast(1).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -526,7 +526,7 @@ public class Admin_UI extends AppCompatActivity {
 
 
             mdatabase = FirebaseDatabase.getInstance().getReference();
-            DatabaseReference child = mdatabase.child("Book Category");
+            DatabaseReference child = mdatabase.child("Component Category");
             DatabaseReference UserDB = child.child(cateid);
 
             UserDB.child("Category").setValue(cate);
@@ -547,7 +547,7 @@ public class Admin_UI extends AppCompatActivity {
             String cateid2 = categoryid2.getText().toString().trim();
 
             mdatabase = FirebaseDatabase.getInstance().getReference();
-            DatabaseReference child = mdatabase.child("Book Category");
+            DatabaseReference child = mdatabase.child("Component Category");
             DatabaseReference UserDB = child.child(cateid2);
 
             UserDB.addValueEventListener(new ValueEventListener() {
@@ -591,7 +591,7 @@ public class Admin_UI extends AppCompatActivity {
 
 
                 mdatabase = FirebaseDatabase.getInstance().getReference();
-                DatabaseReference child = mdatabase.child("Book Category");
+                DatabaseReference child = mdatabase.child("Component Category");
                 DatabaseReference UserDB = child.child(cateid2);
 
                 UserDB.child("Category").setValue(cate2);
@@ -617,7 +617,7 @@ public class Admin_UI extends AppCompatActivity {
             String cate2 = categories2.getText().toString().trim();
 
             mdatabase = FirebaseDatabase.getInstance().getReference();
-            DatabaseReference ref = mdatabase.child("Book Category");
+            DatabaseReference ref = mdatabase.child("Component Category");
 
             ref.child(cateid2).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -640,7 +640,7 @@ public class Admin_UI extends AppCompatActivity {
     public void get_cetagoryid()
     {
         mdatabase = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference child=mdatabase.child("Book Category");
+        DatabaseReference child=mdatabase.child("Component Category");
         child.child("Category").getParent().orderByKey().limitToLast(1).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -708,11 +708,11 @@ public class Admin_UI extends AppCompatActivity {
     {
         if(bookid.getText().toString().equals(""))
         {
-            bookid.setError("Enter Book ID");
+            bookid.setError("Enter Component ID");
         }
         else if (bookname.getText().toString().equals(""))
         {
-            bookname.setError("Enter Book Name");
+            bookname.setError("Enter Component Name");
         }else {
             String id = bookid.getText().toString().trim();
             String name = bookname.getText().toString().trim();
@@ -721,18 +721,18 @@ public class Admin_UI extends AppCompatActivity {
 
 
             mdatabase = FirebaseDatabase.getInstance().getReference();
-            DatabaseReference child = mdatabase.child("Books");
+            DatabaseReference child = mdatabase.child("Components");
             DatabaseReference UserDB = child.child(id);
 
 
-            UserDB.child("Book ID").setValue(id);
-            UserDB.child("Book Name").setValue(name);
-            UserDB.child("Book Category").setValue(Category);
-            UserDB.child("Book Location").setValue(locat);
+            UserDB.child("Component ID").setValue(id);
+            UserDB.child("Component Name").setValue(name);
+            UserDB.child("Component Category").setValue(Category);
+            UserDB.child("Component Location").setValue(locat);
             UserDB.child("Status").setValue("IN");
 
 
-            Toast.makeText(getApplicationContext(), "Book added successful", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Component added successful", Toast.LENGTH_SHORT).show();
             bookname.setText("");
         }
 
@@ -742,7 +742,7 @@ public class Admin_UI extends AppCompatActivity {
     public void get_bookid()
     {
         mdatabase = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference child=mdatabase.child("Books");
+        DatabaseReference child=mdatabase.child("Components");
         child.child("Category").getParent().orderByKey().limitToLast(1).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -810,7 +810,7 @@ public class Admin_UI extends AppCompatActivity {
     {
         if(bookid2.getText().toString().equals(""))
         {
-            bookid2.setError("Enter Book ID");
+            bookid2.setError("Enter Component ID");
         }
         else {
             String id2 = bookid2.getText().toString().trim();
@@ -820,7 +820,7 @@ public class Admin_UI extends AppCompatActivity {
 
 
             mdatabase = FirebaseDatabase.getInstance().getReference();
-            DatabaseReference child = mdatabase.child("Books");
+            DatabaseReference child = mdatabase.child("Components");
             DatabaseReference UserDB = child.child(id2);
 
             UserDB.addValueEventListener(new ValueEventListener() {
@@ -828,24 +828,24 @@ public class Admin_UI extends AppCompatActivity {
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
                     if(dataSnapshot.exists()) {
-                        bookname2.setText(dataSnapshot.child("Book Name").getValue().toString());
-                        txtcategory.setText(dataSnapshot.child("Book Category").getValue().toString());
-                        txtlocation.setText(dataSnapshot.child("Book Location").getValue().toString());
+                        bookname2.setText(dataSnapshot.child("Component Name").getValue().toString());
+                        txtcategory.setText(dataSnapshot.child("Component Category").getValue().toString());
+                        txtlocation.setText(dataSnapshot.child("Component Location").getValue().toString());
 
 
-                        Toast.makeText(getApplicationContext(), "Book ID Found", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Component ID Found", Toast.LENGTH_SHORT).show();
                         tv.setVisibility(View.VISIBLE);
                     }
                     else
                     {
-                        bookid2.setError("Book ID Not Found");
+                        bookid2.setError("Component ID Not Found");
                     }
 
                 }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    Toast.makeText(getApplicationContext(), "Book ID not Found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Component ID not Found", Toast.LENGTH_SHORT).show();
 
                 }
             });
@@ -856,9 +856,9 @@ public class Admin_UI extends AppCompatActivity {
     {
         if(bookid2.getText().toString().equals(""))
         {
-            bookid2.setError("Enter Book ID");
+            bookid2.setError("Enter Component ID");
         }else if(bookname2.getText().toString().equals("")) {
-            bookname2.setError("Enter Book Name");
+            bookname2.setError("Enter Component Name");
 
         }
         else {
@@ -869,15 +869,15 @@ public class Admin_UI extends AppCompatActivity {
 
 
             mdatabase = FirebaseDatabase.getInstance().getReference();
-            DatabaseReference child = mdatabase.child("Books");
+            DatabaseReference child = mdatabase.child("Components");
             DatabaseReference UserDB = child.child(id);
 
-            UserDB.child("Book Name").setValue(name);
-            UserDB.child("Book Category").setValue(Category);
-            UserDB.child("Book Location").setValue(locat);
+            UserDB.child("Component Name").setValue(name);
+            UserDB.child("Component Category").setValue(Category);
+            UserDB.child("Component Location").setValue(locat);
 
 
-            Toast.makeText(getApplicationContext(), "Book added successful", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Component added successful", Toast.LENGTH_SHORT).show();
 
             bookid2.setText("");
             bookname2.setText("");
@@ -897,12 +897,12 @@ public class Admin_UI extends AppCompatActivity {
 
 
         mdatabase = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference child = mdatabase.child("Books");
+        DatabaseReference child = mdatabase.child("Components");
         DatabaseReference UserDB = child.child(id);
         UserDB.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(getApplicationContext(), "Book Deleted successful", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Component Deleted successful", Toast.LENGTH_SHORT).show();
                 bookid2.setText("");
                 bookname2.setText("");
                 txtcategory.setText("");
@@ -916,7 +916,7 @@ public class Admin_UI extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(), "Book Deleted Failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Component Deleted Failed", Toast.LENGTH_SHORT).show();
 
             }
         });

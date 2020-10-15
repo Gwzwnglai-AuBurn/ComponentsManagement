@@ -304,23 +304,23 @@ private ImageView profile,profile2,profilpic;
     {
         if(bookid.getText().toString().equals(""))
         {
-            bookid.setError("Enter Book ID");
+            bookid.setError("Enter Component ID");
         }
         else {
             id = bookid.getText().toString().trim();
 
 
             mdatabase = FirebaseDatabase.getInstance().getReference();
-            DatabaseReference child = mdatabase.child("Books");
+            DatabaseReference child = mdatabase.child("Components");
             DatabaseReference UserDB = child.child(id);
 
             UserDB.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                         if(dataSnapshot.exists()) {
-                            name = dataSnapshot.child("Book Name").getValue().toString();
-                            cate = dataSnapshot.child("Book Category").getValue().toString();
-                            locate = dataSnapshot.child("Book Location").getValue().toString();
+                            name = dataSnapshot.child("Component Name").getValue().toString();
+                            cate = dataSnapshot.child("Component Category").getValue().toString();
+                            locate = dataSnapshot.child("Component Location").getValue().toString();
                             stat = dataSnapshot.child("Status").getValue().toString();
 
                             bookname.setText(name);
@@ -341,11 +341,11 @@ private ImageView profile,profile2,profilpic;
                                 tv.setVisibility(View.VISIBLE);
                                 getbook.setVisibility(View.INVISIBLE);
                             }
-                            Toast.makeText(getApplicationContext(), "Book ID Found", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Component ID Found", Toast.LENGTH_SHORT).show();
                         }
                     else
                         {
-                            Toast.makeText(getApplicationContext(), "Book ID not Found", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Component ID not Found", Toast.LENGTH_SHORT).show();
 
                         }
 
@@ -353,7 +353,7 @@ private ImageView profile,profile2,profilpic;
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    Toast.makeText(getApplicationContext(), "Book ID not Found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Component ID not Found", Toast.LENGTH_SHORT).show();
 
                 }
             });
@@ -366,8 +366,8 @@ private ImageView profile,profile2,profilpic;
 
 
             mdatabase= FirebaseDatabase.getInstance().getReference();
-            DatabaseReference child=mdatabase.child("BorrowedBooks");
-            DatabaseReference UserDB=child.child(user.getUid()).child("Book").child(id);
+            DatabaseReference child=mdatabase.child("BorrowedComponents");
+            DatabaseReference UserDB=child.child(user.getUid()).child("Component").child(id);
 
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df1 = new SimpleDateFormat("dd-MMM-yyyy");
@@ -382,10 +382,10 @@ private ImageView profile,profile2,profilpic;
 
 
 
-            UserDB.child("Book_ID").setValue(id);
-            UserDB.child("Book_Name").setValue(name);
-            UserDB.child("Book_Category").setValue(cate);
-            UserDB.child("Book_Location").setValue(locate);
+            UserDB.child("Component_ID").setValue(id);
+            UserDB.child("Component_Name").setValue(name);
+            UserDB.child("Component_Category").setValue(cate);
+            UserDB.child("Component_Location").setValue(locate);
             UserDB.child("Status").setValue("OUT");
             UserDB.child("Borrowed_Date").setValue(formattedDate1);
             UserDB.child("Return_Date").setValue(retur);
@@ -394,10 +394,10 @@ private ImageView profile,profile2,profilpic;
 
         DatabaseReference child1=mdatabase.child("Adminlist");
         DatabaseReference UserDB1=child1.child(id);
-        UserDB1.child("Book_ID").setValue(id);
-        UserDB1.child("Book_Name").setValue(name);
-        UserDB1.child("Book_Category").setValue(cate);
-        UserDB1.child("Book_Location").setValue(locate);
+        UserDB1.child("Component_ID").setValue(id);
+        UserDB1.child("Component_Name").setValue(name);
+        UserDB1.child("Component_Category").setValue(cate);
+        UserDB1.child("Component_Location").setValue(locate);
         UserDB1.child("Borrowed_Date").setValue(formattedDate1);
         UserDB1.child("Return_Date").setValue(retur);
         UserDB1.child("Notify_Date").setValue(notify);
@@ -405,7 +405,7 @@ private ImageView profile,profile2,profilpic;
 
 
             update_books();
-            Toast.makeText(getApplicationContext(),"Book added successful",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Component added successful",Toast.LENGTH_SHORT).show();
             bookname.setText("");
 
 
@@ -416,14 +416,14 @@ private ImageView profile,profile2,profilpic;
     {
 
         mdatabase= FirebaseDatabase.getInstance().getReference();
-        DatabaseReference child=mdatabase.child("Books");
+        DatabaseReference child=mdatabase.child("Components");
         DatabaseReference UserDB=child.child(id);
 
 
         UserDB.child("Status").setValue("OUT");
 
 
-        Toast.makeText(getApplicationContext(),"Book added successful",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"Component added successful",Toast.LENGTH_SHORT).show();
         bookname.setText("");
 
 
@@ -487,7 +487,7 @@ private ImageView profile,profile2,profilpic;
        NotificationManager notif=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
        Notification notify=new Notification.Builder(this).setContentTitle("Public Library")
                .setSmallIcon(R.mipmap.icon_launcher)
-               .setStyle(new Notification.BigTextStyle().bigText("If you Have Any Library Books Please Return On the Date"))
+               .setStyle(new Notification.BigTextStyle().bigText("If you Have Any Components Please Return On the Date"))
                .setAutoCancel(true).setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                .setVibrate(new long[] {1, 1, 1}).setPriority(Notification.PRIORITY_MAX).build();
             /*   (getApplicationContext()).setContentTitle("Public Library").setContentText("If you Have Any Library Books Please Return On the Date").
@@ -511,7 +511,7 @@ private ImageView profile,profile2,profilpic;
         borrowedbooks.setLayoutManager(new LinearLayoutManager(this));
 
         mdatabase= FirebaseDatabase.getInstance().getReference();
-        DatabaseReference ref=mdatabase.child("BorrowedBooks").child(user.getUid()).child("Book");
+        DatabaseReference ref=mdatabase.child("BorrowedComponents").child(user.getUid()).child("Component");
         FirebaseRecyclerAdapter<my_books,blogviewholder> RecyclerAdapter=new FirebaseRecyclerAdapter<my_books, blogviewholder>(
                 my_books.class,
                 R.layout.my_books,

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Public Library</string>
+    <string name="app_name">Robolab Component</string>
     <string name="open">Open</string>
     <string name="close" >Close</string>
     <string name="action_settings">Settings</string>
@@ -103,10 +103,10 @@
     </string-array>
 
     <string-array name="Category">
-        <item> Programming </item>
-        <item> Business </item>
-        <item> Biomedical </item>
-        <item> History </item>
+        <item> Arduino </item>
+        <item> Raspberry </item>
+        <item> Electronics </item>
+        <item> Parts </item>
     </string-array>
 
 
