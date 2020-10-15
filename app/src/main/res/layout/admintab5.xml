@@ -22,7 +22,7 @@
             android:layout_height="600dp">
 
             <TextView
-                android:text="Search Borrowed Books Details"
+                android:text="Search Borrowed Component Details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView31"
@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:inputType="textPersonName"
-                android:text="Book ID"
+                android:text="Component ID"
                 android:ems="10"
                 android:layout_alignParentTop="true"
 

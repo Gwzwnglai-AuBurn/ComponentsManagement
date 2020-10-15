@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView8"
-                android:text="Edit Book Location"
+                android:text="Edit Component Location"
                 android:textStyle="normal|bold"
                 android:textColor="@android:color/black"
                 android:textSize="24sp"

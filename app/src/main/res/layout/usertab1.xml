@@ -42,7 +42,7 @@
                 android:id="@+id/txtubookid"
                 android:layout_marginTop="22dp"
                 android:background="@drawable/edittext"
-                android:hint="Book ID"
+                android:hint="Component ID"
                 android:textAlignment="center"
                 android:layout_below="@+id/textView13"
                 android:layout_centerHorizontal="true" />
@@ -166,7 +166,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:text="Book Name"
+                android:text="Component Name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="42dp"

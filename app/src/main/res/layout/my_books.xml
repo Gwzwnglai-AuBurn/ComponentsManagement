@@ -13,7 +13,7 @@
         android:weightSum="1">
 
         <TextView
-            android:text="Book ID"
+            android:text="Component ID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView22"
@@ -28,7 +28,7 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/txtmybookid"
-            android:hint="Book ID"
+            android:hint="Component ID"
             android:textAlignment="center"
             android:background="@drawable/edittextwhite"
             android:editable="false"
@@ -36,7 +36,7 @@
             android:layout_marginLeft="10dp" />
 
         <TextView
-            android:text="Book Name"
+            android:text="Component Name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView23"
@@ -51,7 +51,7 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/txtmybookname"
-            android:hint="Book Name"
+            android:hint="Component Name"
             android:textAlignment="center"
             android:background="@drawable/edittextwhite"
             android:editable="false"

@@ -7,7 +7,7 @@
     tools:context="io.gwzwn.managelibrary.User_UI">
 
     <TextView
-        android:text="My Books"
+        android:text="My Components"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView25"

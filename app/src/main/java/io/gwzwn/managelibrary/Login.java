@@ -115,7 +115,7 @@ public class Login extends AppCompatActivity {
                                 Log.w(TAG, "signInWithEmail", task.getException());
                                 Toast.makeText(Login.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                             } else {
-                                if (email.getText().toString().equals("faroos1996@gmail.com") && password.getText().toString().equals("faroos123")) {
+                                if (email.getText().toString().equals("adminRobolab@cic.com") && password.getText().toString().equals("xqcl1234")) {
                                     Intent user = new Intent(Login.this, Admin_UI.class);
                                     startActivity(user);
                                     Toast.makeText(getApplicationContext(), "Sign in Successful please wait..", Toast.LENGTH_SHORT).show();
